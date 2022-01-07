@@ -1,8 +1,17 @@
 import { useEffect } from 'react';
 import Button from '../Button/Button';
+import Chrono from '../Chrono/Chrono'
 
 const Timer = ({ currentTime, setCurrentTime, timer, setTimer }) => {
 
+    const start =() => {
+      setTimer(setInterval(() => {
+        setCurrentTime(currentTime => currentTime + 10);
+      }, 10));
+      clearInterval(timer);
+    }
+    /*
+  }
   const msToTime = duration => {
 
     // Pad 2|3 digits, def->2
@@ -25,7 +34,7 @@ const start = () => {
     setCurrentTime(currentTime => currentTime + 1);
   }, 1 ));
   clearInterval(timer);
-}
+}*/
 
 const stop =() => {
   clearInterval(timer);
@@ -43,7 +52,7 @@ useEffect(() => {
 
 return (
   <div>
-    <h1>{msToTime(currentTime)}</h1>
+    <Chrono time={currentTime} />
     <Button onClick={start}>Start</Button>
     <Button onClick={stop}>Stop</Button>
     <Button onClick={reset}>Reset</Button>
